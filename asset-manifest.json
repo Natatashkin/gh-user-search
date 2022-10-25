@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/react-template-gh-routing/static/css/main.7acaea2f.css",
+    "main.js": "/react-template-gh-routing/static/js/main.e2c3b460.js",
+    "index.html": "/react-template-gh-routing/index.html",
+    "main.7acaea2f.css.map": "/react-template-gh-routing/static/css/main.7acaea2f.css.map",
+    "main.e2c3b460.js.map": "/react-template-gh-routing/static/js/main.e2c3b460.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7acaea2f.css",
+    "static/js/main.e2c3b460.js"
+  ]
+}
