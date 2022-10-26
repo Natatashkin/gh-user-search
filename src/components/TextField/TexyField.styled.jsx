@@ -6,28 +6,13 @@ const Label = styled.label`
   margin-bottom: 16px;
 `;
 
-const InputContainer = styled.div`
-  display: flex;
-  align-items: center;
-  flex-wrap: nowrap;
+const Input = styled.input`
   width: 100%;
   height: 40px;
   border: 1px solid grey;
-  border-radius: 4px;
-`;
-
-const Input = styled.input`
-  width: 100%;
-  height: 100%;
-  border: none;
   border-radius: 4px;
   padding: 0 10px;
   box-sizing: border-box;
 `;
 
-const ButtonContainer = styled.div`
-  height: 40px;
-  width: 40px;
-`;
-
-export { Label, InputContainer, Input, ButtonContainer };
+export { Label, Input };

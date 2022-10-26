@@ -15,6 +15,4 @@ const Form = styled.form`
   width: 30%;
 `;
 
-const SearchFieldContainer = styled.div``;
-
-export { HeaderContainer, SearchFieldContainer, Form };
+export { HeaderContainer, Form };

@@ -3,7 +3,8 @@ import { useLocation } from 'react-router-dom';
 import { TextField } from '../TextField';
 import { PageTitle } from '../PageTitle';
 import { PAGES_DATA } from '../../pages/constans';
-import { HeaderContainer, SearchFieldContainer, Form } from './Header.styled';
+import { HeaderContainer, Form } from './Header.styled';
+import debounce from 'lodash.debounce';
 
 const Header = () => {
   const location = useLocation();
@@ -21,11 +22,14 @@ const Header = () => {
     return currentPage.title;
   }, [location]);
 
+  // const handleOnChange = debounce(setSearchQuery, 1000);
   const handleOnChange = ({ target: { value } }) => {
     setSearchQuery(value);
   };
 
+  console.log(searchQuery);
   const handleSearchResults = e => {
+    e.preventDefault();
     console.log(searchQuery);
   };
 
@@ -34,14 +38,11 @@ const Header = () => {
       <PageTitle title={pageTitle} />
       {showSearch && (
         <Form onSubmit={handleSearchResults}>
-          <SearchFieldContainer>
-            <TextField
-              variant="search"
-              name="search"
-              value={searchQuery}
-              onChange={handleOnChange}
-            />
-          </SearchFieldContainer>
+          <TextField
+            name="search"
+            value={searchQuery}
+            onChange={handleOnChange}
+          />
         </Form>
       )}
     </HeaderContainer>
