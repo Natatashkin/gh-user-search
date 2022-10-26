@@ -1,6 +1,7 @@
 // base url https://api.github.com
 // serch start user https://api.github.com/users/natatashkin
 import axios from 'axios';
+// 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
 
 axios.defaults.baseURL = 'https://api.github.com';
 
