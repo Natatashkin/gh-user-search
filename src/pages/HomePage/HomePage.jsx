@@ -5,8 +5,9 @@ import { useNavigate } from 'react-router-dom';
 import * as ghApi from '../../api/ghApi';
 import { useUser } from '../../context/UserContext';
 import { Button, TextField } from '../../components';
+import { Form, PageContentContainer, ButtonControls } from './HomePage.styled';
 
-const StartPage = () => {
+const HomePage = () => {
   const navigate = useNavigate();
   const { setUserData } = useUser();
   const [username, setUsername] = useState('');
@@ -25,28 +26,31 @@ const StartPage = () => {
       const response = await ghApi.getCurrentUser(username);
       console.log(response);
       setUserData(response);
+
       navigate('/dashboard');
     } catch (error) {
       console.log(error);
     }
   };
   return (
-    <div>
-      <h2>Start Page</h2>
-      <form onSubmit={handleSubmit}>
-        <TextField
-          name="username"
-          onChange={handleChange}
-          value={username}
-          label="Enter your github username"
-        />
-        <div className="buttonControls">
+    <PageContentContainer>
+      <Form onSubmit={handleSubmit}>
+        <div>
+          <TextField
+            name="username"
+            onChange={handleChange}
+            value={username}
+            label="Enter your github username"
+          />
+        </div>
+
+        <ButtonControls>
           <Button title="Submit" />
           <Button title="Skip" onClick={handleSkip} />
-        </div>
-      </form>
-    </div>
+        </ButtonControls>
+      </Form>
+    </PageContentContainer>
   );
 };
 
-export default StartPage;
+export default HomePage;

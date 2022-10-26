@@ -1,16 +1,27 @@
-// base url https://api.github.com
-// serch start user https://api.github.com/users/natatashkin
 import axios from 'axios';
-// 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
+// import { Octokit } from 'octokit';
 
 axios.defaults.baseURL = 'https://api.github.com';
+axios.defaults.headers.common['Authorization'] =
+  'token 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';
+
+// const octokit = new Octokit({
+//   auth: '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',
+// });
 
 const getCurrentUser = async name => {
   const { data } = await axios.get(`/users/${name}`);
   return data;
 };
 
-export { getCurrentUser };
+const getRateLimit = async () => {
+  const response = await axios.get('/rate_limit');
+  return response;
+};
+
+const searchUsers = async () => {};
+
+export { getCurrentUser, getRateLimit };
 
 // {
 //   "login": "Natatashkin",

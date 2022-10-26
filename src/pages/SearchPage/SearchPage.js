@@ -1,9 +1,7 @@
+import React from 'react';
+
 const SearchPage = () => {
-  return (
-    <div>
-      <h2>SearchPage</h2>
-    </div>
-  );
+  return <div>SearchPage content</div>;
 };
 
 export default SearchPage;

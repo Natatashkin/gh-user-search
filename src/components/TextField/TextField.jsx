@@ -1,12 +1,40 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { IconButton } from '../IconButton';
+import { FiSearch } from 'react-icons/fi';
+import {
+  Label,
+  InputContainer,
+  Input,
+  ButtonContainer,
+} from './TexyField.styled';
 
-const TextField = ({ onChange, value, label = '', type = 'text', name }) => {
+// variants:
+// variant='input'
+// variant='search'
+
+const TextField = ({
+  onChange,
+  value = '',
+  label = '',
+  type = 'text',
+  name,
+  variant = 'input',
+}) => {
+  const isSearchField = variant === 'search';
   return (
     <div>
-      {label && <label htmlFor={name}>{label}</label>}
-
-      <input type={type} name={name} onChange={onChange} value={value} />
+      {label && <Label htmlFor={name}>{label}</Label>}
+      <InputContainer>
+        <Input type={type} name={name} onChange={onChange} value={value} />
+        {isSearchField && (
+          <ButtonContainer>
+            <IconButton>
+              <FiSearch color="grey" />
+            </IconButton>
+          </ButtonContainer>
+        )}
+      </InputContainer>
     </div>
   );
 };
