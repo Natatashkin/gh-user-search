@@ -3,11 +3,8 @@ import axios from 'axios';
 
 axios.defaults.baseURL = 'https://api.github.com';
 axios.defaults.headers.common['Authorization'] =
-  'token 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';
-
-// const octokit = new Octokit({
-//   auth: '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',
-// });
+  'token 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';
+axios.defaults.headers.accept = 'application/vnd.github+json';
 
 const getCurrentUser = async name => {
   const { data } = await axios.get(`/users/${name}`);
@@ -19,9 +16,12 @@ const getRateLimit = async () => {
   return response;
 };
 
-const searchUsers = async () => {};
+const searchUsers = async name => {
+  const { data } = await axios.get(`/search/users?q=${name}+type:user+in:name`);
+  return data;
+};
 
-export { getCurrentUser, getRateLimit };
+export { getCurrentUser, getRateLimit, searchUsers };
 
 // {
 //   "login": "Natatashkin",

@@ -8,11 +8,11 @@ const HeaderContainer = styled.header`
   padding: 20px 10px;
 `;
 
-const Form = styled.form`
+const InputWrapper = styled.div`
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
   width: 30%;
 `;
 
-export { HeaderContainer, Form };
+export { HeaderContainer, InputWrapper };
