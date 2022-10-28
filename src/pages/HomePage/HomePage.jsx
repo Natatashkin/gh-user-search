@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import * as ghApi from '../../api/ghApi';
 import { useUser } from '../../context/UserContext';
 import { Button, TextField } from '../../components';
-import { Form, PageContentContainer, ButtonControls } from './HomePage.styled';
+import { Form, ButtonControls } from './HomePage.styled';
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -33,7 +33,7 @@ const HomePage = () => {
     }
   };
   return (
-    <PageContentContainer>
+    <div>
       <Form onSubmit={handleSubmit}>
         <div>
           <TextField
@@ -49,7 +49,7 @@ const HomePage = () => {
           <Button title="Skip" onClick={handleSkip} />
         </ButtonControls>
       </Form>
-    </PageContentContainer>
+    </div>
   );
 };
 

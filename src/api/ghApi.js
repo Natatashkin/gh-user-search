@@ -3,11 +3,17 @@ import axios from 'axios';
 
 axios.defaults.baseURL = 'https://api.github.com';
 axios.defaults.headers.common['Authorization'] =
-  'token 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';
+  'token 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';
 axios.defaults.headers.accept = 'application/vnd.github+json';
 
 const getCurrentUser = async name => {
   const { data } = await axios.get(`/users/${name}`);
+  return data;
+};
+
+const getUserData = async username => {
+  const { data } = await axios.get(`/users/${username}`);
+  console.log('user data ', data);
   return data;
 };
 
@@ -16,12 +22,23 @@ const getRateLimit = async () => {
   return response;
 };
 
-const searchUsers = async name => {
-  const { data } = await axios.get(`/search/users?q=${name}+type:user+in:name`);
-  return data;
+const searchUsers = async (name, page) => {
+  try {
+    const { data } = await axios.get(
+      `/search/users?q=${name}&type=user&in=name&per_page=3&page=${page}`
+    );
+    const findUsers = data.items.map(({ login }) => {
+      const response = getUserData(login);
+      return response;
+    });
+    const usersData = await Promise.all(findUsers);
+    return usersData;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
-export { getCurrentUser, getRateLimit, searchUsers };
+export { getCurrentUser, getRateLimit, searchUsers, getUserData };
 
 // {
 //   "login": "Natatashkin",

@@ -4,6 +4,7 @@ import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import { BrowserRouter } from 'react-router-dom';
 import UserProvider from './context/UserContext';
 import { App } from './components/App';
+import { GlobalStyles } from './globalStyles';
 import './index.css';
 
 // window.addEventListener('load', async () => {
@@ -22,6 +23,7 @@ const root = createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter basename="/gh-user-search">
+      <GlobalStyles />
       <UserProvider>
         <App />
       </UserProvider>

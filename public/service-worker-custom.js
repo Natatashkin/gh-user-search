@@ -25,7 +25,7 @@ const fetchRequest = async req => {
     return response;
   } catch (error) {
     // console.log(error);
-    console.log(req);
+    // console.log(req);
     const chachedData = await caches.match(req);
     return chachedData;
   }

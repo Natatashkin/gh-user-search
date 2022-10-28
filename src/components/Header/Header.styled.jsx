@@ -6,6 +6,8 @@ const HeaderContainer = styled.header`
   align-items: center;
   width: 100%;
   padding: 20px 10px;
+  background-color: #ffffff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
 `;
 
 const InputWrapper = styled.div`

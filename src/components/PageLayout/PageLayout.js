@@ -1,12 +1,14 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import { Header } from '../Header';
+import { Container } from '../Container';
+import styled from 'styled-components';
 
-const PageLayout = ({ children }) => {
+const PageLayout = () => {
   return (
     <div>
-      <Header />
-      <Outlet />
+      <Container>
+        <Outlet />
+      </Container>
     </div>
   );
 };
