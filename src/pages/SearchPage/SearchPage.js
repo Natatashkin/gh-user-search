@@ -8,7 +8,7 @@ const SearchPage = ({ query }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [userList, setUserList] = useState([]);
   const [searchQuery, setSearchQuery] = useState(query);
-  const [page, setPage] = useState(3);
+  const [page, setPage] = useState(1);
   const [loading, setIsLoading] = useState(false);
   const currentQuery = searchParams.get('q');
 
@@ -35,14 +35,12 @@ const SearchPage = ({ query }) => {
     setSearchQuery(query);
     if (query) {
       setSearchParams({ q: query });
+      console.log('query: ', query);
     } else {
-      // console.log(searchParams.has('q'));
       searchParams.delete('q');
+      setSearchParams(searchParams);
     }
-  }, [query]);
-
-  console.log('currentQuery >>>', currentQuery);
-  console.log('searchQuery >>>', searchQuery);
+  }, [query, searchParams]);
 
   return (
     <div>

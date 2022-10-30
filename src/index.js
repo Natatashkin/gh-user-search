@@ -4,7 +4,7 @@ import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import { BrowserRouter } from 'react-router-dom';
 import UserProvider from './context/UserContext';
 import { App } from './components/App';
-import { GlobalStyles } from './globalStyles';
+import { GlobalStyles } from './styles/globalStyles';
 import './index.css';
 
 // window.addEventListener('load', async () => {
