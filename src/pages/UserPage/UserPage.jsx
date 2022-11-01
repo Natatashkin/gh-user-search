@@ -1,4 +1,5 @@
 import React from 'react';
+import { useCallback } from 'react';
 import { useEffect, useState } from 'react';
 import { useParams, useLocation, Link } from 'react-router-dom';
 import * as ghApi from '../../api/ghApi';
@@ -9,7 +10,7 @@ const UserPage = () => {
   const [userData, setUserData] = useState({});
   const [loading, setIsLoading] = useState(false);
 
-  const getCurrentUser = async () => {
+  const getCurrentUser = useCallback(async () => {
     try {
       setIsLoading(true);
       const response = await ghApi.getUser(login);
@@ -18,11 +19,11 @@ const UserPage = () => {
       console.log(error);
     }
     setIsLoading(false);
-  };
+  }, [login]);
 
   useEffect(() => {
     getCurrentUser();
-  }, []);
+  }, [getCurrentUser]);
   console.log(userData);
 
   // Спросить Андрея как работает возврат запроса в инпут?????

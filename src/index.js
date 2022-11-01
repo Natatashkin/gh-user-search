@@ -17,10 +17,7 @@ import './index.css';
 //   } catch (error) {
 //     console.log('[SW]: registration failed');
 //   }
-// });  
-
-// fhjhfvbjfhvb
-
+// });
 
 const root = createRoot(document.getElementById('root'));
 root.render(

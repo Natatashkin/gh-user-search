@@ -9,13 +9,13 @@ const SearchPage = ({ query, getCurrentUser }) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [userList, setUserList] = useState([]);
   const [searchQuery, setSearchQuery] = useState(query);
-  const [page, setPage] = useState(1);
+  const [page] = useState(1);
   const [loading, setIsLoading] = useState(false);
 
-  const removeSearchParams = () => {
+  const removeSearchParams = useCallback(() => {
     searchParams.delete('q');
     setSearchParams(searchParams);
-  };
+  }, [searchParams, setSearchParams]);
 
   const makeSearchQuery = useCallback(async (data, page) => {
     setUserList([]);
@@ -29,7 +29,10 @@ const SearchPage = ({ query, getCurrentUser }) => {
     setIsLoading(false);
   }, []);
 
-  const debounceRequest = useCallback(debounce(makeSearchQuery, 500), []);
+  const debounceRequest = useCallback(
+    () => debounce(makeSearchQuery, 500),
+    [makeSearchQuery]
+  );
 
   useEffect(() => {
     setSearchQuery(query);
@@ -44,7 +47,7 @@ const SearchPage = ({ query, getCurrentUser }) => {
     // ghApi.controller.abort();
     removeSearchParams();
     setUserList([]);
-  }, [searchQuery, page, debounceRequest]);
+  }, [searchQuery, page, debounceRequest, removeSearchParams, setSearchParams]);
 
   return (
     <div>

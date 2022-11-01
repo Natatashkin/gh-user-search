@@ -1,6 +1,5 @@
 import React from 'react';
 import { FaStar } from 'react-icons/fa';
-import { Navigate, useNavigate, Link } from 'react-router-dom';
 import { IconButton } from '../../IconButton';
 import {
   UserCard,

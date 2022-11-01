@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect, useCallback } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useLocation, useMatch } from 'react-router-dom';
 import { TextField } from '../TextField';
 import { PageTitle } from '../PageTitle';
@@ -24,7 +24,7 @@ const Header = ({ onGetQuery }) => {
     }
 
     return currentPageData.title;
-  }, [location]);
+  }, [location.pathname, match]);
 
   const handleOnChange = ({ target: { value } }) => {
     setQuery(value);
