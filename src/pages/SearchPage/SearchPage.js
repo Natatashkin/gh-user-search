@@ -1,18 +1,24 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useLocation } from 'react-router-dom';
 import { UsersList, UsersListItem } from '../../components';
 import debounce from 'lodash.debounce';
 import * as ghApi from '../../api/ghApi';
 
-const SearchPage = ({ query }) => {
+const SearchPage = ({ query, getCurrentUser }) => {
+  const location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
   const [userList, setUserList] = useState([]);
   const [searchQuery, setSearchQuery] = useState(query);
   const [page, setPage] = useState(1);
   const [loading, setIsLoading] = useState(false);
-  const currentQuery = searchParams.get('q');
+
+  const removeSearchParams = () => {
+    searchParams.delete('q');
+    setSearchParams(searchParams);
+  };
 
   const makeSearchQuery = useCallback(async (data, page) => {
+    setUserList([]);
     try {
       setIsLoading(true);
       const users = await ghApi.searchUsers(data, page);
@@ -23,32 +29,30 @@ const SearchPage = ({ query }) => {
     setIsLoading(false);
   }, []);
 
-  const debounceRequest = useCallback(debounce(makeSearchQuery, 1000), []);
-
-  useEffect(() => {
-    if (searchQuery.length >= 3) {
-      debounceRequest(searchQuery, page);
-    }
-  }, [searchQuery, page, debounceRequest]);
+  const debounceRequest = useCallback(debounce(makeSearchQuery, 500), []);
 
   useEffect(() => {
     setSearchQuery(query);
-    if (query) {
-      setSearchParams({ q: query });
-      console.log('query: ', query);
-    } else {
-      searchParams.delete('q');
-      setSearchParams(searchParams);
+  }, [query]);
+
+  useEffect(() => {
+    if (searchQuery.length >= 3) {
+      setSearchParams({ q: searchQuery });
+      debounceRequest(searchQuery, page);
+      return;
     }
-  }, [query, searchParams]);
+    // ghApi.controller.abort();
+    removeSearchParams();
+    setUserList([]);
+  }, [searchQuery, page, debounceRequest]);
 
   return (
     <div>
       {loading && <h3>Loading...</h3>}
-      {userList && (
+      {userList && searchQuery && (
         <UsersList>
           {userList.map(item => (
-            <UsersListItem key={item.id} item={item} />
+            <UsersListItem key={item.id} item={item} location={location} />
           ))}
         </UsersList>
       )}

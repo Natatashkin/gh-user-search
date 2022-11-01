@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const UserCard = styled.div`
   width: 400px;
@@ -9,6 +10,12 @@ const UserCard = styled.div`
   &:not(:last-child) {
     margin-bottom: 15px;
   }
+`;
+
+const UserLink = styled(Link)`
+  display: block;
+  text-decoration: none;
+  color: #000000;
 `;
 const Block = styled.div`
   display: flex;
@@ -77,6 +84,7 @@ const Stats = styled.div`
 `;
 
 const StatsTitle = styled.h5`
+  color: #585858;
   margin-bottom: 10px;
 `;
 const StatsData = styled.p`
@@ -87,6 +95,7 @@ const StatsData = styled.p`
 export {
   UserCard,
   Avatar,
+  UserLink,
   Image,
   Block,
   UserInfo,

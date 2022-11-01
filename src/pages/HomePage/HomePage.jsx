@@ -23,7 +23,7 @@ const HomePage = () => {
   const handleSubmit = async e => {
     e.preventDefault();
     try {
-      const response = await ghApi.getCurrentUser(username);
+      const response = await ghApi.getUser(username);
       console.log(response);
       setUserData(response);
 
